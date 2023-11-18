@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+} */
+@layer utilities {
+  body {
+    @apply bg-[#F2F2F2] text-black;
+  }
+  h1 {
+    @apply font-bold md:font-extrabold text-base md:text-3xl;
+  }
+  h2 {
+    @apply font-semibold md:font-bold text-sm lg:text-2xl;
+  }
+  h3 {
+    @apply font-medium md:font-semibold text-xs xl:text-xl;
+  }
+  h4 {
+    @apply font-medium text-xs xl:text-lg;
+  }
+  h5 {
+    @apply font-medium text-xs xl:text-sm;
+  }
+}
