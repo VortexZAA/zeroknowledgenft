@@ -11,7 +11,7 @@ export default function Home() {
   const [search, setSearch] = useState<string>("");
 
   return (
-    <Layout title="Marketpalce">
+    <Layout title="Marketplace">
       <div className="flex w-full justify-center">
         <div className="h-10 flex w-2/3 gap-6 -mt-11 z-10">
           <input
