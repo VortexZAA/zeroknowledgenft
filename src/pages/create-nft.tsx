@@ -131,24 +131,7 @@ function Mint({
     try {
       setSelected(selected + 1);
       /* setLoading(true);
-      const formData = new FormData();
-      const files: any = e.currentTarget.elements.namedItem("avatar")?.files;
-      console.log(files);
-
-      for (let file of files) {
-        formData.append("avatar", file);
-      }
-      const name = e.currentTarget.elements.namedItem("name")?.value as string;
-      const nickname = e.currentTarget.elements.namedItem("nickname")
-        ?.value as string;
-      const bio = e.currentTarget.elements.namedItem("bio")?.value as string;
-      formData.append("name", name);
-      formData.append("nickname", nickname);
-      formData.append("bio", bio);
-      formData.append("address", publicKey);
-      console.log(name, nickname, bio);
-      const res = await pb.collection("web3_users").create(formData);
-      console.log(res);
+      
       ToastSuccess.fire("Success");
       setLoading(false); */
     } catch (error) {
@@ -162,7 +145,7 @@ function Mint({
       onSubmit={handleSubmit}
       className="grid grid-cols-2  w-full gap-6 bg-orange-300 p-12 rounded-2xl "
     >
-      <Card disabled={true} img={file ?URL.createObjectURL(file) :''} name={file?.name} creator={user?.nickname} price={100} />
+      <Card disabled={true} img={file ?URL.createObjectURL(file) :''} name={file?.name} creator={user?.nickname} price={0} status={'mint'} />
       <div className="flex flex-col items-start col-span-2 justify-center gap-2 w-full">
         <label
           htmlFor="dropzone-file"
@@ -272,7 +255,9 @@ function Finish({token_id}: {token_id: number}) {
   }, []);
   async function getNft() {
     try {
-      const res = await pb.collection("nft_sell").getFirstListItem(`token_id=${token_id}`);
+      const res = await pb.collection("nft_sell").getFirstListItem(`token_id="${token_id}"`,{
+        expand: "nft"
+      });
       console.log(res);
       setNft(res);
     } catch (error) {

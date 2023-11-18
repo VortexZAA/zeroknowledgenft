@@ -6,12 +6,14 @@ export default function Card({
   creator,
   price,
   disabled,
+  status,
 }: {
   name: string;
   img: string;
   creator: string;
   price: number;
   disabled?: boolean;
+  status?: string;
 }) {
   return (
     <div className="flex flex-col w-full col-span-full max-w-[300px] mx-auto p-4 gap-3 rounded-xl bg-white shadow">
@@ -29,17 +31,21 @@ export default function Card({
         <div className="flex gap-2 justify-between">
           Creator: <span className="font-bold">{creator}</span>
         </div>
-        <div className="flex gap-2 justify-between">
-          Price: <span className="font-bold">${price}</span>
-        </div>
+        {status !== "mint" && (
+          <div className="flex gap-2 justify-between">
+            Price: <span className="font-bold">${price}</span>
+          </div>
+        )}
       </div>
-      <button
-        type="button"
-        disabled={disabled}
-        className="bg-[#F38D89] transition-all hover:bg-gray-600 h-10 rounded-lg text-white font-medium"
-      >
-        BUY
-      </button>
+      {status !== "mint" && (
+        <button
+          type="button"
+          disabled={disabled}
+          className="bg-[#F38D89] transition-all hover:bg-gray-600 h-10 rounded-lg text-white font-medium"
+        >
+          BUY
+        </button>
+      )}
     </div>
   );
 }
